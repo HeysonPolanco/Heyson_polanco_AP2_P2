@@ -16,15 +16,15 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideMoshi(): Moshi{
+    fun provideMoshi(): Moshi {
         return Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
     }
 
     @Provides
     @Singleton
-    fun provideApi(moshi: Moshi): Api{
+    fun provideApi(moshi: Moshi): Api {
         return Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl("https://api-2026-h7eddqgydxc0fmau.eastus2-01.azurewebsites.net/")
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(Api::class.java)

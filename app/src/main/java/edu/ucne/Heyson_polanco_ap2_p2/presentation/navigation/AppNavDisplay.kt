@@ -22,13 +22,16 @@ fun AppNavDisplay(
         entryProvider = entryProvider {
             entry<Screen.List>{
                 ListScreen(
-                    onClick = {id ->
-                        backStack.add(Screen.Detail(id))
+                    onNavigateToCreate = {
+                        backStack.add(Screen.Detail(id = 0))
+                    },
+                    onNavigateToEdit = { id ->
+                        backStack.add(Screen.Detail(id = id))
                     }
                 )
             }
 
-            entry<Screen.Detail>{key ->
+            entry<Screen.Detail>{ key ->
                 DetailScreen(
                     onBack = {
                         if(backStack.isNotEmpty()) backStack.removeAt(backStack.size - 1)

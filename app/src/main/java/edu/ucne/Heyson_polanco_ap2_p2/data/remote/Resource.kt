@@ -7,4 +7,8 @@ sealed class Resource<T>(
     class Success<T>(data: T): Resource<T>(data)
     class Error<T>(message: String): Resource<T>(null, message)
     class Loading<T>: Resource<T>()
+
+    fun isSuccess(): Boolean = this is Success
+    fun isError(): Boolean = this is Error
+    fun isLoading(): Boolean = this is Loading
 }
