@@ -1,3 +1,4 @@
+@file:Suppress("PackageName")
 package edu.ucne.Heyson_polanco_ap2_p2.di
 
 import com.squareup.moshi.Moshi
@@ -6,7 +7,9 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import edu.ucne.Heyson_polanco_ap2_p2.data.RepositoryImp
 import edu.ucne.Heyson_polanco_ap2_p2.data.remote.Api
+import edu.ucne.Heyson_polanco_ap2_p2.domain.repository.GastosRepository
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import javax.inject.Singleton
@@ -28,5 +31,13 @@ object AppModule {
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
             .create(Api::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideGastosRepository(
+        api: Api
+    ): GastosRepository {
+        return RepositoryImp(api)
     }
 }
