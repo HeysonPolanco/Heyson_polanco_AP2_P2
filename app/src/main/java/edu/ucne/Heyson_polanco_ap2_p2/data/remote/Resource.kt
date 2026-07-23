@@ -1,14 +1,10 @@
 package edu.ucne.Heyson_polanco_ap2_p2.data.remote
 
-sealed class Resource<T>(
+sealed class Resource<T> (
     val data: T? = null,
     val message: String? = null
 ) {
     class Success<T>(data: T): Resource<T>(data)
-    class Error<T>(message: String): Resource<T>(null, message)
+    class Error<T>(message: String?): Resource<T>(null, message)
     class Loading<T>: Resource<T>()
-
-    fun isSuccess(): Boolean = this is Success
-    fun isError(): Boolean = this is Error
-    fun isLoading(): Boolean = this is Loading
 }
