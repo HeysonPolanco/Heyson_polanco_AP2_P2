@@ -36,7 +36,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import edu.ucne.Heyson_polanco_ap2_p2.data.remote.dto.GastosResponseDto
+import edu.ucne.Heyson_polanco_ap2_p2.domain.model.Gastos
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -117,7 +117,7 @@ fun ListScreen(
 
 @Composable
 fun GastoRow(
-    gasto: GastosResponseDto,
+    gasto: Gastos,
     onClick: () -> Unit
 ) {
     Card(
@@ -140,7 +140,7 @@ fun GastoRow(
                     fontWeight = FontWeight.Bold
                 )
                 Text(
-                    text = "${gasto.fecha ?: "Sin fecha"}",
+                    text = gasto.fecha ?: "Sin fecha",
                     color = Color.Gray,
                     style = MaterialTheme.typography.bodySmall
                 )
